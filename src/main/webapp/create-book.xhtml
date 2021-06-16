@@ -17,20 +17,30 @@
 			                 columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
 			                 contentStyleClass="p-align-baseline ui-fluid">
 			        <p:outputLabel for="name" value="Name"/>
-			        <p:inputText id="name" value="#{createBook.newBook.name}" required="true" requiredMessage="Name Required">
-			        <p:message for="name"></p:message>
+			        <p:inputText id="name" value="#{createBook.newBook.name}">
 			        
 			        </p:inputText>
 			        <p:outputLabel for="price" value="Price"/>
 			        <p:inputNumber id="price" value="#{createBook.newBook.price}"/>
 			
+			        <p:outputLabel for="author" value="Author"/>
+			        <p:selectOneMenu id="author" value="#{createBook.authorId}" disabled="#{createBook.newAuthor}">
+			            <f:selectItems value="#{createBook.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}"/>
+			        </p:selectOneMenu>
+
+			        <p:selectBooleanCheckbox value="#{createBook.newAuthor}" itemLabel="Add New Author">
+			            <p:ajax update="author new-author-name"></p:ajax>
+			        </p:selectBooleanCheckbox>
+			        
+					<p:outputLabel for="new-author-name" value="New Author Name"/>
+			        <p:inputText id="new-author-name" value="#{createBook.authorName}" />
 
 			        <p:outputLabel for="genre" value="Genre"/>
 			        <p:selectOneMenu id="genre" value="#{createBook.newBook.genre}">
 			            <f:selectItems value="#{createBook.genres}" var="genre" itemLabel="#{genre}" itemValue="#{genre}"/>
 			        </p:selectOneMenu>
 			        
-			   		<p:commandButton value="Submit" action="#{createBook.saveBook()}" />
+			   		<p:commandButton value="Submit" action="#{createBook.saveBook()}" style="width:10rem"/>
 			    </p:panelGrid>
 			</h:form>
 			</div>			

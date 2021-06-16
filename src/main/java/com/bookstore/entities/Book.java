@@ -2,6 +2,7 @@ package com.bookstore.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,8 @@ public class Book {
 	
 	private Genre genre;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL,
+				fetch = FetchType.LAZY)
 	private Author author;
 	
 	public Book(String name, double price, String isbn, Genre genre, Author author) {

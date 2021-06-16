@@ -12,7 +12,12 @@
 				</p:linkButton>
 			<h:form>
 			    <div class="card">
-			        <p:dataTable var="book" value="#{bookBean.bookList}">
+			        <p:dataTable var="book" value="#{bookBean.bookList}"
+			         rows="5"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 			            <p:column headerText="Isbn">
 			                <h:outputText value="#{book.isbn}" />
 			            </p:column>
@@ -29,7 +34,7 @@
 			            </p:column>
 			            <p:column headerText="Price">
 			                <h:outputText value="$#{book.price}" />
-			            </p:column>			
+			            </p:column>				            	
 			        </p:dataTable>
 			    </div>
 			</h:form> 

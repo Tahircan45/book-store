@@ -12,7 +12,6 @@ import javax.inject.Named;
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Genre;
-import com.bookstore.service.AuthorService;
 import com.bookstore.service.BookService;
 import com.bookstore.util.NumberGenerator;
 
@@ -31,8 +30,6 @@ public class CreateBook implements Serializable {
 	@EJB
 	private BookService bookService;
 
-	@EJB
-	private AuthorService authorService;
 	
 	@Inject
 	private NumberGenerator numberGenerator;
@@ -43,20 +40,46 @@ public class CreateBook implements Serializable {
 	
 	@Setter
 	@Getter
+	private int authorId;
+	
+	@Setter
+	@Getter
+	private String authorName;
+	
+	@Setter
+	@Getter
+	private boolean newAuthor;
+	
+	@Setter
+	@Getter
 	private List<Author> authors;
 	
 	@PostConstruct
 	public void init() {
-		authors= authorService.getAllAuthors();
+		authors= bookService.getAllAuthors();
 	}
 	
 	public String saveBook() {
+		
+		System.out.println("Author Name:"+authorName);
+		
 		newBook.setIsbn(numberGenerator.generateNumber());
+		
+		if(newAuthor) {
+			Author newAuthor=new Author(authorName);
+			bookService.createAuthor(newAuthor);
+			newBook.setAuthor(newAuthor);			
+		}
+		
+		else {			
+			newBook.setAuthor(bookService.findAuthor(authorId));
+		}
+		
 		bookService.createBook(newBook);
 		return "index.xhtml?faces-redirect=true";
 	}
 	public Genre[] getGenres() {
 		return Genre.values();
 	}
-	
+		
 }

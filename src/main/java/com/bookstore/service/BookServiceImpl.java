@@ -71,4 +71,21 @@ public class BookServiceImpl implements BookService{
         List<Book> bookList=em.createQuery("select b from Book b",Book.class).getResultList();
         return bookList;
     }
+	@Override
+	public List<Author> getAllAuthors() {
+		List<Author> authors=em.createQuery("select a from Author a",Author.class).getResultList();
+		System.out.println(authors);
+		return authors;
+	}
+
+	@Override
+	public Author findAuthor(int id) {		
+		return em.find(Author.class,id);
+	}
+	
+	@Override
+	public Author createAuthor(Author author) {
+		em.persist(author);
+		return author;
+	}
 }
