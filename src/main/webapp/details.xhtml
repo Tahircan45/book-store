@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+	<ui:composition template="/templates/page-template.xhtml">
+		<f:metadata>
+	        <f:viewParam name="id" value="#{bookDetails.bookId}"/>
+	        <f:viewAction action="#{bookDetails.onLoad()}"/>
+	    </f:metadata>
+		<ui:param name="pageTitle" value="#{bookDetails.book.name}" />
+		<ui:define name="main">
+		<div class="container">
+			  <div class="row">
+			    <div class="col-sm-6">
+			      <h:graphicImage library="images" name="satranc.jpeg" />	
+			    </div>
+			    <div class="col-sm-6">
+			      <table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Name</th>
+					      <td scope="col">#{bookDetails.book.name}</td>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">Genre</th>
+					      <td>#{bookDetails.book.genre}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Isbn</th>
+					      <td>#{bookDetails.book.isbn}</td>
+					    </tr>	
+					    <tr>
+					      <th scope="row">Author</th>
+					      <td>#{bookDetails.book.author.name}</td>
+					    </tr>	
+					    <tr>
+					      <th scope="row">Price</th>
+					      <td>$#{bookDetails.book.price}</td>
+					    </tr>		   
+					  </tbody>					  
+					</table>
+					<p:link outcome="index.xhtml" value="Back to Main Page"></p:link>				
+			    </div>
+			  </div>
+			</div>									
+		</ui:define>	
+	</ui:composition>
+		
+</html>

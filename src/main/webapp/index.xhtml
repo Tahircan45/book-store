@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+	<ui:composition template="/templates/page-template.xhtml">
+		<ui:param name="pageTitle" value="Index" />
+		<ui:define name="main">
+				<p:linkButton outcome="create-book.xhtml" value="Add Book" style="margin-bottom:20px;">
+				</p:linkButton>
+			<h:form>
+			    <div class="card">
+			        <p:dataTable var="book" value="#{bookBean.bookList}">
+			            <p:column headerText="Isbn">
+			                <h:outputText value="#{book.isbn}" />
+			            </p:column>
+			            <p:column headerText="Name">
+			                <p:link outcome="details.xhtml" value="#{book.name}">
+						        <f:param name="id" value="#{book.id}"></f:param>
+						    </p:link>
+			            </p:column>
+			            <p:column headerText="Name">
+			                <h:outputText value="#{book.author.name}" />
+			            </p:column>
+			            <p:column headerText="Genre">
+			                <h:outputText value="#{book.genre}" />
+			            </p:column>
+			            <p:column headerText="Price">
+			                <h:outputText value="$#{book.price}" />
+			            </p:column>			
+			        </p:dataTable>
+			    </div>
+			</h:form> 
+		</ui:define>
+	</ui:composition>     
+</html>

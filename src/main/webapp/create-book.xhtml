@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/templates/page-template.xhtml">
+		<ui:param name="pageTitle" value="Create New Book" />
+		<ui:define name="main">
+			<div class="card">
+			<p:messages />
+			<h:form>
+			<p:messages />
+				<h5>Create A New Book</h5>
+			    <p:panelGrid columns="1" layout="flex"
+			                 columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+			                 contentStyleClass="p-align-baseline ui-fluid">
+			        <p:outputLabel for="name" value="Name"/>
+			        <p:inputText id="name" value="#{createBook.newBook.name}" required="true" requiredMessage="Name Required">
+			        <p:message for="name"></p:message>
+			        
+			        </p:inputText>
+			        <p:outputLabel for="price" value="Price"/>
+			        <p:inputNumber id="price" value="#{createBook.newBook.price}"/>
+			
+
+			        <p:outputLabel for="genre" value="Genre"/>
+			        <p:selectOneMenu id="genre" value="#{createBook.newBook.genre}">
+			            <f:selectItems value="#{createBook.genres}" var="genre" itemLabel="#{genre}" itemValue="#{genre}"/>
+			        </p:selectOneMenu>
+			        
+			   		<p:commandButton value="Submit" action="#{createBook.saveBook()}" />
+			    </p:panelGrid>
+			</h:form>
+			</div>			
+		</ui:define>
+	</ui:composition>
+</html>
