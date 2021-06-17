@@ -24,6 +24,7 @@ public class CreateBook implements Serializable {
 
 	/**
 	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -42,8 +43,7 @@ public class CreateBook implements Serializable {
 	@Getter
 	private int authorId;
 	
-	@Setter
-	@Getter
+
 	private String authorName;
 	
 	@Setter
@@ -59,10 +59,7 @@ public class CreateBook implements Serializable {
 		authors= bookService.getAllAuthors();
 	}
 	
-	public String saveBook() {
-		
-		System.out.println("Author Name:"+authorName);
-		
+	public String saveBook() {		
 		newBook.setIsbn(numberGenerator.generateNumber());
 		
 		if(newAuthor) {
@@ -71,7 +68,7 @@ public class CreateBook implements Serializable {
 			newBook.setAuthor(newAuthor);			
 		}
 		
-		else {			
+		else {
 			newBook.setAuthor(bookService.findAuthor(authorId));
 		}
 		
@@ -81,5 +78,13 @@ public class CreateBook implements Serializable {
 	public Genre[] getGenres() {
 		return Genre.values();
 	}
-		
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}	
+	
 }

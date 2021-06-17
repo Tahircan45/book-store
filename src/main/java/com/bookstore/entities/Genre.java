@@ -8,5 +8,6 @@ public enum Genre {
 	Horror,
 	Fantasy,
 	Dictionary,
-	Cookbook
+	Cookbook,
+	History
 }

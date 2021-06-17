@@ -10,34 +10,59 @@
 		<ui:define name="main">
 				<p:linkButton outcome="create-book.xhtml" value="Add Book" style="margin-bottom:20px;">
 				</p:linkButton>
-			<h:form>
-			    <div class="card">
-			        <p:dataTable var="book" value="#{bookBean.bookList}"
-			         rows="5"
+
+			  <div class="card">
+			  <f:view>
+			    <h:form>
+			        <p:dataTable 
+			         var="book" value="#{bookBean.bookList}"
+			         widgetVar="bookTable"
+			         emptyMessage="No book found with given criteria"
+			         filteredValue="#{bookBean.filteredBookList}"
+			         filterBy="#{bookBean.filterBy}"
+			         
+			         rows="10"
                      paginator="true"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-			            <p:column headerText="Isbn">
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                     paginatorPosition="bottom"
+                     globalFilterFunction="#{bookBean.globalFilterFunction}">
+                     
+			            <f:facet name="header">
+			                <div class="p-d-flex p-jc-end">
+			                	<span>List of Books</span>
+			                    <p:inputText id="globalFilter" onkeyup="PF('bookTable').filter()" style="width:300px"
+			                                 placeholder="Search all fields using global function" />
+			                </div>
+			            </f:facet>
+                     
+			            <p:column headerText="Isbn" filterBy="#{book.isbn}" sortBy="#{book.isbn}">
 			                <h:outputText value="#{book.isbn}" />
 			            </p:column>
-			            <p:column headerText="Name">
+			            
+			            <p:column headerText="Name" filterBy="#{book.name}" sortBy="#{book.name}">
 			                <p:link outcome="details.xhtml" value="#{book.name}">
 						        <f:param name="id" value="#{book.id}"></f:param>
 						    </p:link>
 			            </p:column>
-			            <p:column headerText="Name">
-			                <h:outputText value="#{book.author.name}" />
-			            </p:column>
-			            <p:column headerText="Genre">
+
+			            <p:column field="genre" headerText="Genre" filterMatchMode="exact">
+                            <f:facet name="filter">
+			                    <p:selectOneMenu onchange="PF('bookTable').filter()" styleClass="custom-filter">
+			                        <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+			                        <f:selectItems value="#{bookBean.genres}" />
+			                    </p:selectOneMenu>
+			                </f:facet>
 			                <h:outputText value="#{book.genre}" />
 			            </p:column>
-			            <p:column headerText="Price">
+			            <p:column headerText="Price" sortBy="#{book.price}">
 			                <h:outputText value="$#{book.price}" />
 			            </p:column>				            	
 			        </p:dataTable>
+				  </h:form> 
+				  </f:view>
 			    </div>
-			</h:form> 
 		</ui:define>
 	</ui:composition>     
 </html>
