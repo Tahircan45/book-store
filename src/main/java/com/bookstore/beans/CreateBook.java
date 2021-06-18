@@ -43,7 +43,8 @@ public class CreateBook implements Serializable {
 	@Getter
 	private int authorId;
 	
-
+	@Setter
+	@Getter
 	private String authorName;
 	
 	@Setter
@@ -78,13 +79,4 @@ public class CreateBook implements Serializable {
 	public Genre[] getGenres() {
 		return Genre.values();
 	}
-
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}	
-	
 }
