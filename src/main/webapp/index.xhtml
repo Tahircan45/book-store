@@ -12,14 +12,13 @@
 				</p:linkButton>
 
 			  <div class="card">
-			  <f:view>
 			    <h:form>
 			        <p:dataTable 
 			         var="book" value="#{bookBean.bookList}"
 			         widgetVar="bookTable"
 			         emptyMessage="No book found with given criteria"
 			         filteredValue="#{bookBean.filteredBookList}"
-			         filterBy="#{bookBean.filterBy}"
+			         	
 			         
 			         rows="10"
                      paginator="true"
@@ -60,7 +59,6 @@
 			            </p:column>				            	
 			        </p:dataTable>
 				  </h:form> 
-				  </f:view>
 			    </div>
 		</ui:define>
 	</ui:composition>     

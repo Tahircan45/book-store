@@ -1,5 +1,7 @@
 package com.bookstore.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +25,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Table(name="book")
-public class Book {
+public class Book implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
