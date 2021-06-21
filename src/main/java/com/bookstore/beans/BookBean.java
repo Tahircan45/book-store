@@ -1,13 +1,11 @@
 package com.bookstore.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -55,7 +53,6 @@ public class BookBean implements Serializable {
         if (LangUtils.isValueBlank(filterText)) {
             return true;
         }
-        int filterInt = getInteger(filterText);
         double filterDouble=getDouble(filterText);
         
         Book book=(Book)value;
@@ -66,14 +63,6 @@ public class BookBean implements Serializable {
         		||book.getPrice() < filterDouble;        		
     }
 
-    private int getInteger(String string) {
-        try {
-            return Integer.parseInt(string);
-        }
-        catch (NumberFormatException ex) {
-            return 0;
-        }
-    }
     private double getDouble(String string) {
         try {
             return Double.parseDouble(string);
