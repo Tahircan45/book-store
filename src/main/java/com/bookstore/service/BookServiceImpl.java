@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.bookstore.entities.Author;
@@ -87,5 +89,15 @@ public class BookServiceImpl implements BookService{
 	public Author createAuthor(Author author) {
 		em.persist(author);
 		return author;
+	}
+	@Override
+	public List<Book> getPagedBook(int pageNum,int pageSize){
+		TypedQuery<Book> query=em.createQuery("select b from Book b",Book.class);
+		
+		query.setFirstResult(pageNum*pageSize);
+		query.setMaxResults(pageSize);
+		List <Book>
+ 		list= query.getResultList();
+		return list;
 	}
 }

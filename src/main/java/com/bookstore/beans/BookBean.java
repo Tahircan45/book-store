@@ -10,10 +10,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.util.LangUtils;
 
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Genre;
+import com.bookstore.entities.LazyBookDataModel;
 import com.bookstore.service.BookService;
 
 import lombok.Getter;
@@ -33,7 +35,7 @@ public class BookBean implements Serializable {
 	
 	@Setter
 	@Getter
-	private List<Book> bookList;
+	private LazyDataModel<Book> bookList;
 
 	@Setter
 	@Getter
@@ -42,10 +44,13 @@ public class BookBean implements Serializable {
 	@Setter
 	@Getter
 	private List<FilterMeta> filterBy;
-	
+		
 	@PostConstruct
 	public void init() {
-		bookList=bookService.getAllBook();
+//		bookList=new LazyBookDataModel(bookService);
+		
+		bookList=new LazyBookDataModel(bookService.getAllBook());
+
 	}
 	
     public boolean globalFilterFunction(Object value, Object filter, Locale locale) {

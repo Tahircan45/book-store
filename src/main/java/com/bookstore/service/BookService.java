@@ -12,4 +12,5 @@ public interface BookService {
 	List<Author> getAllAuthors();
 	Author findAuthor(int id);
 	Author createAuthor(Author author);
+	List<Book> getPagedBook(int pageNum, int pageSize);
 }
