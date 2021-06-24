@@ -59,7 +59,6 @@ public class Book implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
@@ -79,11 +78,6 @@ public class Book implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-			return false;
 		if (genre != other.genre)
 			return false;
 		if (id != other.id)
@@ -103,5 +97,6 @@ public class Book implements Serializable {
 		return true;
 	}
 	
+
 }
 

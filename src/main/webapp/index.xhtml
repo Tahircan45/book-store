@@ -14,26 +14,13 @@
 			  <div class="card">
 			    <h:form>
 			        <p:dataTable 
-			         var="book" value="#{bookBean.bookList}"
-			         widgetVar="bookTable"
-			         emptyMessage="No book found with given criteria"
-			         filteredValue="#{bookBean.filteredBookList}"
-			         	
-			         
-			         rows="2"
-                     paginator="true"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                     rowsPerPageTemplate="2,4,{ShowAll|'All'}"
-                     paginatorPosition="bottom"
-                     globalFilterFunction="#{bookBean.globalFilterFunction}">
+			         var="book" value="#{bookBean.bookList}" paginator="true" rows="2"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="2,4" 
                      
-			            <f:facet name="header">
-			                <div class="p-d-flex p-jc-end">
-			                    <p:inputText id="globalFilter" onkeyup="PF('bookTable').filter()" style="width:300px"
-			                                 placeholder="Search all fields using global function" />
-			                </div>
-			            </f:facet>
+                     
+                     id="bookTable">
+                     
                      
 			            <p:column headerText="Isbn" filterBy="#{book.isbn}" sortBy="#{book.isbn}">
 			                <h:outputText value="#{book.isbn}" />

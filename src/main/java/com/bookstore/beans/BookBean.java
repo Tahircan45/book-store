@@ -39,12 +39,8 @@ public class BookBean implements Serializable {
 
 	@Setter
 	@Getter
-	private List<Book> filteredBookList;
-	
-	@Setter
-	@Getter
-	private List<FilterMeta> filterBy;
-		
+	private Book selectedBook;
+			
 	@PostConstruct
 	public void init() {
 //		bookList=new LazyBookDataModel(bookService);
